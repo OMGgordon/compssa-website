@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Academics - COMPSSA</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Academics Page Specific Styles */
+        .academics-hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('Assets/academics.jpg');
+            background-size: cover;
+            background-position: center;
+            height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: var(--white);
+            margin-top: 60px;
+        }
+
+        .academics-hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .academics-hero p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .academics-section {
+            padding: 5rem 0;
+        }
+
+        .academics-section:nth-child(even) {
+            background: var(--light-gray);
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            color: var(--secondary-color);
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .section-title p {
+            color: var(--dark-gray);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .course-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            padding: 0 2rem;
+        }
+
+        .course-card {
+            background: var(--white);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .course-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .course-image {
+            width: 100%;
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .course-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .course-card:hover .course-image img {
+            transform: scale(1.1);
+        }
+
+        .course-content {
+            padding: 1.5rem;
+        }
+
+        .course-content h3 {
+            color: var(--secondary-color);
+            margin-bottom: 1rem;
+        }
+
+        .course-content p {
+            color: var(--dark-gray);
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+
+        .course-content ul {
+            list-style: none;
+            margin-bottom: 1rem;
+        }
+
+        .course-content li {
+            margin-bottom: 0.5rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .course-content li::before {
+            content: '•';
+            color: var(--primary-color);
+            position: absolute;
+            left: 0;
+        }
+
+        .resource-link {
+            display: inline-block;
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 500;
+            margin-top: 1rem;
+        }
+
+        .resource-link:hover {
+            text-decoration: underline;
+        }
+
+        .textbook-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            padding: 0 2rem;
+        }
+
+        .textbook-card {
+            background: var(--white);
+            border-radius: 10px;
+            padding: 1.5rem;
+            box-shadow: var(--shadow);
+            text-align: center;
+            transition: var(--transition);
+        }
+
+        .textbook-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .textbook-card img {
+            width: 150px;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 5px;
+            margin-bottom: 1rem;
+        }
+
+        .textbook-card h3 {
+            color: var(--secondary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .textbook-card p {
+            color: var(--dark-gray);
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+        }
+
+        .textbook-card .author {
+            color: var(--primary-color);
+            font-weight: 500;
+        }
+
+        .calendar-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+        }
+
+        .calendar-event {
+            padding: 1.5rem;
+            border-bottom: 1px solid var(--light-gray);
+        }
+
+        .calendar-event:last-child {
+            border-bottom: none;
+        }
+
+        .event-date {
+            color: var(--primary-color);
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+        }
+
+        .event-title {
+            color: var(--secondary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .event-description {
+            color: var(--dark-gray);
+            line-height: 1.6;
+        }
+
+        @media (max-width: 768px) {
+            .academics-hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .section-title h2 {
+                font-size: 2rem;
+            }
+
+            .course-grid,
+            .textbook-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="logo">
+            <img src="Assets/logo.png" alt="COMPSSA Logo">
+            <span>COMPSSA</span>
+        </div>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="academics.html" class="active">Academics</a>
+            <a href="events.html">Events</a>
+            <a href="resources.html">Resources</a>
+            <a href="blog.html">Blog</a>
+            <a href="get-involved.html">Get Involved</a>
+            <a href="contact.html">Contact</a>
+            <a href="portal.html" class="portal-btn">Member Portal</a>
+        </div>
+        <div class="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </nav>
+
+    <!-- Academics Hero Section -->
+    <section class="academics-hero">
+        <div class="container">
+            <h1>Academic Resources</h1>
+            <p>Your comprehensive guide to Computer Science studies at the University of Ghana</p>
+        </div>
+    </section>
+
+    <!-- Course Outlines Section -->
+    <section class="academics-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Course Outlines & Exam Resources</h2>
+                <p>Access detailed course information and study materials</p>
+            </div>
+            <div class="course-grid">
+                <div class="course-card">
+                    <div class="course-image">
+                        <img src="Assets/courses/programming.jpg" alt="Programming Course">
+                    </div>
+                    <div class="course-content">
+                        <h3>Introduction to Programming</h3>
+                        <p>Learn the fundamentals of programming using Python and Java.</p>
+                        <ul>
+                            <li>Basic programming concepts</li>
+                            <li>Data structures and algorithms</li>
+                            <li>Object-oriented programming</li>
+                            <li>Problem-solving techniques</li>
+                        </ul>
+                        <a href="#" class="resource-link">View Course Outline <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                <div class="course-card">
+                    <div class="course-image">
+                        <img src="Assets/courses/database.jpg" alt="Database Course">
+                    </div>
+                    <div class="course-content">
+                        <h3>Database Systems</h3>
+                        <p>Understanding database design and management systems.</p>
+                        <ul>
+                            <li>Database design principles</li>
+                            <li>SQL and NoSQL databases</li>
+                            <li>Data modeling</li>
+                            <li>Database administration</li>
+                        </ul>
+                        <a href="#" class="resource-link">View Course Outline <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                <div class="course-card">
+                    <div class="course-image">
+                        <img src="Assets/courses/networks.jpg" alt="Networks Course">
+                    </div>
+                    <div class="course-content">
+                        <h3>Computer Networks</h3>
+                        <p>Study of network protocols and architecture.</p>
+                        <ul>
+                            <li>Network protocols</li>
+                            <li>Network security</li>
+                            <li>Network architecture</li>
+                            <li>Network management</li>
+                        </ul>
+                        <a href="#" class="resource-link">View Course Outline <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Textbooks Section -->
+    <section class="academics-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Recommended Textbooks</h2>
+                <p>Essential reading materials for your studies</p>
+            </div>
+            <div class="textbook-grid">
+                <div class="textbook-card">
+                    <img src="Assets/textbooks/python.jpg" alt="Python Programming">
+                    <h3>Python Programming</h3>
+                    <p class="author">By John Smith</p>
+                    <p>Comprehensive guide to Python programming fundamentals</p>
+                    <a href="#" class="resource-link">View Details <i class="fas fa-arrow-right"></i></a>
+                </div>
+                <div class="textbook-card">
+                    <img src="Assets/textbooks/database.jpg" alt="Database Systems">
+                    <h3>Database Systems</h3>
+                    <p class="author">By Sarah Johnson</p>
+                    <p>Complete guide to database design and management</p>
+                    <a href="#" class="resource-link">View Details <i class="fas fa-arrow-right"></i></a>
+                </div>
+                <div class="textbook-card">
+                    <img src="Assets/textbooks/networks.jpg" alt="Computer Networks">
+                    <h3>Computer Networks</h3>
+                    <p class="author">By Michael Brown</p>
+                    <p>Understanding network protocols and architecture</p>
+                    <a href="#" class="resource-link">View Details <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Past Papers Section -->
+    <section class="academics-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Past Exam Papers</h2>
+                <p>Access previous examination papers with faculty approval</p>
+            </div>
+            <div class="course-grid">
+                <div class="course-card">
+                    <div class="course-content">
+                        <h3>Programming Past Papers</h3>
+                        <p>Access past examination papers for programming courses.</p>
+                        <ul>
+                            <li>Python Programming (2023)</li>
+                            <li>Java Programming (2023)</li>
+                            <li>Data Structures (2023)</li>
+                        </ul>
+                        <a href="#" class="resource-link">View Past Papers <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                <div class="course-card">
+                    <div class="course-content">
+                        <h3>Database Past Papers</h3>
+                        <p>Previous examination papers for database courses.</p>
+                        <ul>
+                            <li>Database Design (2023)</li>
+                            <li>SQL Programming (2023)</li>
+                            <li>Database Management (2023)</li>
+                        </ul>
+                        <a href="#" class="resource-link">View Past Papers <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                <div class="course-card">
+                    <div class="course-content">
+                        <h3>Networks Past Papers</h3>
+                        <p>Access past papers for computer networks courses.</p>
+                        <ul>
+                            <li>Network Protocols (2023)</li>
+                            <li>Network Security (2023)</li>
+                            <li>Network Architecture (2023)</li>
+                        </ul>
+                        <a href="#" class="resource-link">View Past Papers <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Academic Calendar Section -->
+    <section class="academics-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Academic Calendar</h2>
+                <p>Important dates and events for the current academic year</p>
+            </div>
+            <div class="calendar-container">
+                <div class="calendar-event">
+                    <div class="event-date">January 15, 2024</div>
+                    <h3 class="event-title">First Semester Begins</h3>
+                    <p class="event-description">Start of the first semester classes and activities.</p>
+                </div>
+                <div class="calendar-event">
+                    <div class="event-date">March 1-15, 2024</div>
+                    <h3 class="event-title">Mid-Semester Examinations</h3>
+                    <p class="event-description">First semester mid-term examinations period.</p>
+                </div>
+                <div class="calendar-event">
+                    <div class="event-date">April 15-30, 2024</div>
+                    <h3 class="event-title">Project Submissions</h3>
+                    <p class="event-description">Deadline for submission of semester projects.</p>
+                </div>
+                <div class="calendar-event">
+                    <div class="event-date">May 1-15, 2024</div>
+                    <h3 class="event-title">End of Semester Examinations</h3>
+                    <p class="event-description">First semester final examinations period.</p>
+                </div>
+                <div class="calendar-event">
+                    <div class="event-date">August 15, 2024</div>
+                    <h3 class="event-title">Second Semester Begins</h3>
+                    <p class="event-description">Start of the second semester classes and activities.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>COMPSSA</h3>
+                    <p>University of Ghana Computer Science Student Association</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="events.html">Events</a></li>
+                        <li><a href="resources.html">Resources</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Connect With Us</h3>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                        <a href="#"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>Newsletter</h3>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="Enter your email">
+                        <button type="submit">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 COMPSSA. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html> 

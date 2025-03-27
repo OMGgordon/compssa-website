@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About COMPSSA - University of Ghana Computer Science Student Association</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* About Page Specific Styles */
+        .about-hero {
+            position: relative;
+            height: 400px;
+            margin-top: 60px;
+            overflow: hidden;
+        }
+
+        .hero-slider {
+            height: 100%;
+            position: relative;
+        }
+
+        .hero-slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .hero-slide.active {
+            opacity: 1;
+        }
+
+        .hero-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .hero-slide::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7));
+        }
+
+        .hero-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            color: var(--white);
+            z-index: 2;
+            width: 90%;
+            max-width: 800px;
+        }
+
+        .hero-content h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+
+        .hero-controls {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 1rem;
+            z-index: 3;
+        }
+
+        .hero-controls button {
+            background: rgba(255, 255, 255, 0.3);
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            color: var(--white);
+            transition: var(--transition);
+        }
+
+        .hero-controls button:hover {
+            background: var(--primary-color);
+        }
+
+        .about-section {
+            padding: 5rem 0;
+        }
+
+        .about-section:nth-child(even) {
+            background: var(--light-gray);
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            color: var(--secondary-color);
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .section-title p {
+            color: var(--dark-gray);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .history-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .history-content p {
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+        }
+
+        .executive-board {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            padding: 0 2rem;
+        }
+
+        .executive-member {
+            background: var(--white);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .executive-member:hover {
+            transform: translateY(-10px);
+        }
+
+        .member-image {
+            width: 100%;
+            height: 300px;
+            overflow: hidden;
+        }
+
+        .member-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .executive-member:hover .member-image img {
+            transform: scale(1.1);
+        }
+
+        .member-info {
+            padding: 1.5rem;
+            text-align: center;
+        }
+
+        .member-info h3 {
+            color: var(--secondary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .member-info p {
+            color: var(--primary-color);
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+        }
+
+        .member-info .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .member-info .social-links a {
+            color: var(--dark-gray);
+            transition: var(--transition);
+        }
+
+        .member-info .social-links a:hover {
+            color: var(--primary-color);
+        }
+
+        .constitution-content {
+            max-width: 800px;
+            margin: 0 auto;
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+        }
+
+        .constitution-content h3 {
+            color: var(--secondary-color);
+            margin-bottom: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .constitution-content p {
+            margin-bottom: 2rem;
+            line-height: 1.8;
+        }
+
+        .constitution-content ul {
+            list-style: none;
+            margin-bottom: 3rem;
+        }
+
+        .constitution-content li {
+            margin-bottom: 1.5rem;
+            padding-left: 1.5rem;
+            position: relative;
+            line-height: 1.8;
+        }
+
+        .constitution-content li::before {
+            content: '•';
+            color: var(--primary-color);
+            position: absolute;
+            left: 0;
+        }
+
+        .achievements-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            padding: 0 2rem;
+        }
+
+        .achievement-card {
+            background: var(--white);
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: var(--shadow);
+            text-align: center;
+            transition: var(--transition);
+        }
+
+        .achievement-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .achievement-card i {
+            font-size: 3rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .achievement-card h3 {
+            color: var(--secondary-color);
+            margin-bottom: 1rem;
+        }
+
+        .achievement-card p {
+            color: var(--dark-gray);
+            line-height: 1.6;
+        }
+
+        @media (max-width: 768px) {
+            .about-hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .section-title h2 {
+                font-size: 2rem;
+            }
+
+            .executive-board {
+                grid-template-columns: 1fr;
+            }
+
+            .achievements-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="logo">
+            <img src="Assets/logo.png" alt="COMPSSA Logo">
+            <span>COMPSSA</span>
+        </div>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="about.html" class="active">About</a>
+            <a href="academics.html">Academics</a>
+            <a href="events.html">Events</a>
+            <a href="resources.html">Resources</a>
+            <a href="blog.html">Blog</a>
+            <a href="get-involved.html">Get Involved</a>
+            <a href="contact.html">Contact</a>
+            <a href="portal.html" class="portal-btn">Member Portal</a>
+        </div>
+        <div class="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </nav>
+
+    <!-- About Hero Section -->
+    <section class="about-hero">
+        <div class="hero-slider">
+            <div class="hero-slide active">
+                <img src="Assets/compssa.jpg" alt="COMPSSA Students">
+                <div class="hero-content">
+                    <h1>About COMPSSA</h1>
+                    <p>Empowering Computer Science Students at University of Ghana</p>
+                </div>
+            </div>
+            <div class="hero-slide">
+                <img src="Assets/students2.jpg" alt="COMPSSA Students">
+                <div class="hero-content">
+                    <h1>Innovation Hub</h1>
+                    <p>Fostering technological innovation and creativity</p>
+                </div>
+            </div>
+            <div class="hero-slide">
+                <img src="Assets/students3.jpg" alt="COMPSSA Students">
+                <div class="hero-content">
+                    <h1>Learning Community</h1>
+                    <p>Building a vibrant community of tech enthusiasts</p>
+                </div>
+            </div>
+        </div>
+        <div class="hero-controls">
+            <button class="prev"><i class="fas fa-chevron-left"></i></button>
+            <button class="next"><i class="fas fa-chevron-right"></i></button>
+        </div>
+    </section>
+
+    <!-- History Section -->
+    <section class="about-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our History</h2>
+                <p>The journey of COMPSSA at the University of Ghana</p>
+            </div>
+            <div class="history-content">
+                <p>COMPSSA was established in [Year] with the vision of creating a vibrant community for Computer Science students at the University of Ghana. What started as a small group of passionate students has grown into a dynamic organization that represents and serves the interests of all Computer Science students.</p>
+                <p>Over the years, COMPSSA has been at the forefront of technological innovation and student development, organizing numerous events, workshops, and initiatives that have shaped the academic and professional lives of countless students.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Executive Board Section -->
+    <section class="about-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Executive Board</h2>
+                <p>Meet the current leadership team of COMPSSA</p>
+            </div>
+            <div class="executive-board">
+                <!-- President -->
+                <div class="executive-member">
+                    <div class="member-image">
+                        <img src="Assets/nissi.jpg" alt="COMPSSA President">
+                    </div>
+                    <div class="member-info">
+                        <h3>Nissi Semanyoh</h3>
+                        <p>President</p>
+                        <div class="social-links">
+                            <a href="#"><i class="fab fa-linkedin"></i></a>
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Vice President -->
+                <div class="executive-member">
+                    <div class="member-image">
+                        <img src="Assets/mills.jpg" alt="COMPSSA Vice President">
+                    </div>
+                    <div class="member-info">
+                        <h3>Mills Boateng Kudi</h3>
+                        <p>Vice President</p>
+                        <div class="social-links">
+                            <a href="#"><i class="fab fa-linkedin"></i></a>
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <!-- General Secretary -->
+                <div class="executive-member">
+                    <div class="member-image">
+                        <img src="Assets/ryan.jpg" alt="COMPSSA General Secretary">
+                    </div>
+                    <div class="member-info">
+                        <h3>Ryan Brown</h3>
+                        <p>General Secretary</p>
+                        <div class="social-links">
+                            <a href="#"><i class="fab fa-linkedin"></i></a>
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Organizing Secretary -->
+                <div class="executive-member">
+                    <div class="member-image">
+                        <img src="Assets/lily.jpg" alt="COMPSSA Organizing Secretary">
+                    </div>
+                    <div class="member-info">
+                        <h3>Princess Lily Apreku</h3>
+                        <p>Organizing Secretary</p>
+                        <div class="social-links">
+                            <a href="#"><i class="fab fa-linkedin"></i></a>
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Financial Secretary -->
+                <div class="executive-member">
+                    <div class="member-image">
+                        <img src="Assets/lizzy.jpg" alt="COMPSSA Financial Secretary">
+                    </div>
+                    <div class="member-info">
+                        <h3>Elizabeth Ofosu</h3>
+                        <p>Financial Secretary</p>
+                        <div class="social-links">
+                            <a href="#"><i class="fab fa-linkedin"></i></a>
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Treasurer -->
+                <div class="executive-member">
+                    <div class="member-image">
+                        <img src="Assets/sharon.jpg" alt="COMPSSA Treasurer">
+                    </div>
+                    <div class="member-info">
+                        <h3>Sharon Prempeh</h3>
+                        <p>Treasurer</p>
+                        <div class="social-links">
+                            <a href="#"><i class="fab fa-linkedin"></i></a>
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <!-- PRO -->
+                <div class="executive-member">
+                    <div class="member-image">
+                        <img src="Assets/mary.jpg" alt="COMPSSA PRO">
+                    </div>
+                    <div class="member-info">
+                        <h3>Mary Akuba</h3>
+                        <p>P.R.O</p>
+                        <div class="social-links">
+                            <a href="#"><i class="fab fa-linkedin"></i></a>
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Constitution Section -->
+    <section class="about-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Constitution & Governing Documents</h2>
+                <p>Our guiding principles and organizational structure</p>
+            </div>
+            <div class="constitution-content">
+                <h3>Our Mission</h3>
+                <p>To foster academic excellence, professional development, and innovation among Computer Science students at the University of Ghana.</p>
+                
+                <h3>Our Vision</h3>
+                <p>To be the leading student organization in technology and innovation at the University of Ghana.</p>
+
+                <h3>Core Values</h3>
+                <ul>
+                    <li>Excellence in Academics</li>
+                    <li>Innovation and Creativity</li>
+                    <li>Professional Development</li>
+                    <li>Community Service</li>
+                    <li>Inclusivity and Diversity</li>
+                </ul>
+
+                <h3>Organizational Structure</h3>
+                <ul>
+                    <li>Executive Board</li>
+                    <li>Academic Committee</li>
+                    <li>Events Committee</li>
+                    <li>Technical Committee</li>
+                    <li>Public Relations Committee</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Achievements Section -->
+    <section class="about-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Achievements & Awards</h2>
+                <p>Celebrating our successes and milestones</p>
+            </div>
+            <div class="achievements-grid">
+                <div class="achievement-card">
+                    <i class="fas fa-trophy"></i>
+                    <h3>Coming Soon</h3>
+                    <p>Stay tuned for our upcoming achievements and awards!</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>COMPSSA</h3>
+                    <p>University of Ghana Computer Science Student Association</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="events.html">Events</a></li>
+                        <li><a href="resources.html">Resources</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Connect With Us</h3>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                        <a href="#"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>Newsletter</h3>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="Enter your email">
+                        <button type="submit">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 COMPSSA. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Hero Slider
+        const heroSlides = document.querySelectorAll('.hero-slide');
+        const prevBtn = document.querySelector('.hero-controls .prev');
+        const nextBtn = document.querySelector('.hero-controls .next');
+        let currentSlide = 0;
+
+        function showHeroSlide(index) {
+            heroSlides.forEach(slide => slide.classList.remove('active'));
+            heroSlides[index].classList.add('active');
+        }
+
+        function nextHeroSlide() {
+            currentSlide = (currentSlide + 1) % heroSlides.length;
+            showHeroSlide(currentSlide);
+        }
+
+        function prevHeroSlide() {
+            currentSlide = (currentSlide - 1 + heroSlides.length) % heroSlides.length;
+            showHeroSlide(currentSlide);
+        }
+
+        prevBtn.addEventListener('click', prevHeroSlide);
+        nextBtn.addEventListener('click', nextHeroSlide);
+
+        // Auto slide every 5 seconds
+        setInterval(nextHeroSlide, 5000);
+    </script>
+</body>
+</html> 
