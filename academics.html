@@ -133,10 +133,20 @@
             text-decoration: none;
             font-weight: 500;
             margin-top: 1rem;
+            transition: var(--transition);
         }
 
         .resource-link:hover {
-            text-decoration: underline;
+            color: var(--accent-color);
+            transform: translateX(5px);
+        }
+
+        .resource-link i {
+            transition: transform 0.3s ease;
+        }
+
+        .resource-link:hover i {
+            transform: translateX(5px);
         }
 
         .textbook-grid {
@@ -231,6 +241,200 @@
                 grid-template-columns: 1fr;
             }
         }
+
+        /* Level Selection Styles */
+        .level-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            padding: 0 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .level-card {
+            background: var(--white);
+            border-radius: 10px;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .level-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .level-card.locked {
+            opacity: 0.7;
+            cursor: not-allowed;
+        }
+
+        .level-card.locked::after {
+            content: '\f023';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 3rem;
+            color: var(--primary-color);
+            opacity: 0.5;
+        }
+
+        .level-number {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .level-title {
+            color: var(--secondary-color);
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .level-description {
+            color: var(--dark-gray);
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .level-link {
+            display: inline-block;
+            padding: 0.8rem 1.5rem;
+            background: var(--primary-color);
+            color: var(--white);
+            text-decoration: none;
+            border-radius: 5px;
+            transition: var(--transition);
+        }
+
+        .level-link:hover {
+            background: var(--accent-color);
+        }
+
+        /* Quick Links Styles */
+        .quick-links-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            padding: 0 2rem;
+        }
+
+        .quick-link-card {
+            background: var(--white);
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .quick-link-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .quick-link-card i {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .quick-link-card h3 {
+            color: var(--secondary-color);
+            margin-bottom: 1rem;
+        }
+
+        .quick-link-card p {
+            color: var(--dark-gray);
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        /* Disclaimer Styles */
+        .disclaimer {
+            background: var(--light-gray);
+            padding: 2rem;
+            border-radius: 10px;
+            margin: 2rem auto;
+            max-width: 800px;
+        }
+
+        .disclaimer h3 {
+            color: var(--secondary-color);
+            margin-bottom: 1rem;
+        }
+
+        .disclaimer p {
+            color: var(--dark-gray);
+            line-height: 1.6;
+        }
+
+        /* Progress Bar Styles */
+        .progress-container {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+        }
+
+        .progress-bar {
+            display: flex;
+            justify-content: space-between;
+            position: relative;
+            margin-bottom: 1rem;
+        }
+
+        .progress-bar::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: var(--light-gray);
+            z-index: 1;
+        }
+
+        .progress-step {
+            width: 40px;
+            height: 40px;
+            background: var(--white);
+            border: 2px solid var(--primary-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary-color);
+            font-weight: 500;
+            position: relative;
+            z-index: 2;
+        }
+
+        .progress-step.active {
+            background: var(--primary-color);
+            color: var(--white);
+        }
+
+        .progress-step.completed {
+            background: var(--primary-color);
+            color: var(--white);
+        }
+
+        .progress-step.completed::after {
+            content: '\f00c';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+        }
+
+        .progress-labels {
+            display: flex;
+            justify-content: space-between;
+            color: var(--dark-gray);
+            font-size: 0.9rem;
+        }
     </style>
 </head>
 <body>
@@ -261,147 +465,78 @@
     <!-- Academics Hero Section -->
     <section class="academics-hero">
         <div class="container">
-            <h1>Academic Resources</h1>
+            <h1>Computer Science Curriculum</h1>
             <p>Your comprehensive guide to Computer Science studies at the University of Ghana</p>
         </div>
     </section>
 
-    <!-- Course Outlines Section -->
+    <!-- Disclaimer Section -->
+    <section class="academics-section">
+        <div class="container">
+            <div class="disclaimer">
+                <h3>Important Disclaimer</h3>
+                <p>This page serves as a supplementary resource for Computer Science students. All official course information, including syllabi, schedules, and requirements, should be verified with the Department of Computer Science and the University's official channels. The information provided here is subject to change and should not be considered as the final authority on academic matters.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Level Selection Section -->
     <section class="academics-section">
         <div class="container">
             <div class="section-title">
-                <h2>Course Outlines & Exam Resources</h2>
-                <p>Access detailed course information and study materials</p>
+                <h2>Select Your Level</h2>
+                <p>Access resources specific to your year of study</p>
             </div>
-            <div class="course-grid">
-                <div class="course-card">
-                    <div class="course-image">
-                        <img src="Assets/courses/programming.jpg" alt="Programming Course">
-                    </div>
-                    <div class="course-content">
-                        <h3>Introduction to Programming</h3>
-                        <p>Learn the fundamentals of programming using Python and Java.</p>
-                        <ul>
-                            <li>Basic programming concepts</li>
-                            <li>Data structures and algorithms</li>
-                            <li>Object-oriented programming</li>
-                            <li>Problem-solving techniques</li>
-                        </ul>
-                        <a href="#" class="resource-link">View Course Outline <i class="fas fa-arrow-right"></i></a>
-                    </div>
+            <div class="level-grid">
+                <div class="level-card">
+                    <div class="level-number">100</div>
+                    <h3 class="level-title">First Year</h3>
+                    <a href="academics/level/100.html" class="level-link">View Resources</a>
                 </div>
-                <div class="course-card">
-                    <div class="course-image">
-                        <img src="Assets/courses/database.jpg" alt="Database Course">
-                    </div>
-                    <div class="course-content">
-                        <h3>Database Systems</h3>
-                        <p>Understanding database design and management systems.</p>
-                        <ul>
-                            <li>Database design principles</li>
-                            <li>SQL and NoSQL databases</li>
-                            <li>Data modeling</li>
-                            <li>Database administration</li>
-                        </ul>
-                        <a href="#" class="resource-link">View Course Outline <i class="fas fa-arrow-right"></i></a>
-                    </div>
+                <div class="level-card">
+                    <div class="level-number">200</div>
+                    <h3 class="level-title">Second Year</h3>
+                    <a href="academics/level/200.html" class="level-link">View Resources</a>
                 </div>
-                <div class="course-card">
-                    <div class="course-image">
-                        <img src="Assets/courses/networks.jpg" alt="Networks Course">
-                    </div>
-                    <div class="course-content">
-                        <h3>Computer Networks</h3>
-                        <p>Study of network protocols and architecture.</p>
-                        <ul>
-                            <li>Network protocols</li>
-                            <li>Network security</li>
-                            <li>Network architecture</li>
-                            <li>Network management</li>
-                        </ul>
-                        <a href="#" class="resource-link">View Course Outline <i class="fas fa-arrow-right"></i></a>
-                    </div>
+                <div class="level-card">
+                    <div class="level-number">300</div>
+                    <h3 class="level-title">Third Year</h3>
+                    <a href="academics/level/300.html" class="level-link">View Resources</a>
+                </div>
+                <div class="level-card">
+                    <div class="level-number">400</div>
+                    <h3 class="level-title">Final Year</h3>
+                    <a href="academics/level/400.html" class="level-link">View Resources</a>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Textbooks Section -->
+    <!-- Quick Links Section -->
     <section class="academics-section">
         <div class="container">
             <div class="section-title">
-                <h2>Recommended Textbooks</h2>
-                <p>Essential reading materials for your studies</p>
+                <h2>Quick Links</h2>
+                <p>Access important academic resources and information</p>
             </div>
-            <div class="textbook-grid">
-                <div class="textbook-card">
-                    <img src="Assets/textbooks/python.jpg" alt="Python Programming">
-                    <h3>Python Programming</h3>
-                    <p class="author">By John Smith</p>
-                    <p>Comprehensive guide to Python programming fundamentals</p>
-                    <a href="#" class="resource-link">View Details <i class="fas fa-arrow-right"></i></a>
+            <div class="quick-links-grid">
+                <div class="quick-link-card">
+                    <i class="fas fa-book"></i>
+                    <h3>Departmental Syllabus</h3>
+                    <p>Access the official Computer Science department syllabus and course information.</p>
+                    <a href="#" class="resource-link">View Syllabus →</a>
                 </div>
-                <div class="textbook-card">
-                    <img src="Assets/textbooks/database.jpg" alt="Database Systems">
-                    <h3>Database Systems</h3>
-                    <p class="author">By Sarah Johnson</p>
-                    <p>Complete guide to database design and management</p>
-                    <a href="#" class="resource-link">View Details <i class="fas fa-arrow-right"></i></a>
+                <div class="quick-link-card">
+                    <i class="fas fa-file-alt"></i>
+                    <h3>Exam Regulations</h3>
+                    <p>Important information about examination rules and procedures.</p>
+                    <a href="#" class="resource-link">View Regulations →</a>
                 </div>
-                <div class="textbook-card">
-                    <img src="Assets/textbooks/networks.jpg" alt="Computer Networks">
-                    <h3>Computer Networks</h3>
-                    <p class="author">By Michael Brown</p>
-                    <p>Understanding network protocols and architecture</p>
-                    <a href="#" class="resource-link">View Details <i class="fas fa-arrow-right"></i></a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Past Papers Section -->
-    <section class="academics-section">
-        <div class="container">
-            <div class="section-title">
-                <h2>Past Exam Papers</h2>
-                <p>Access previous examination papers with faculty approval</p>
-            </div>
-            <div class="course-grid">
-                <div class="course-card">
-                    <div class="course-content">
-                        <h3>Programming Past Papers</h3>
-                        <p>Access past examination papers for programming courses.</p>
-                        <ul>
-                            <li>Python Programming (2023)</li>
-                            <li>Java Programming (2023)</li>
-                            <li>Data Structures (2023)</li>
-                        </ul>
-                        <a href="#" class="resource-link">View Past Papers <i class="fas fa-arrow-right"></i></a>
-                    </div>
-                </div>
-                <div class="course-card">
-                    <div class="course-content">
-                        <h3>Database Past Papers</h3>
-                        <p>Previous examination papers for database courses.</p>
-                        <ul>
-                            <li>Database Design (2023)</li>
-                            <li>SQL Programming (2023)</li>
-                            <li>Database Management (2023)</li>
-                        </ul>
-                        <a href="#" class="resource-link">View Past Papers <i class="fas fa-arrow-right"></i></a>
-                    </div>
-                </div>
-                <div class="course-card">
-                    <div class="course-content">
-                        <h3>Networks Past Papers</h3>
-                        <p>Access past papers for computer networks courses.</p>
-                        <ul>
-                            <li>Network Protocols (2023)</li>
-                            <li>Network Security (2023)</li>
-                            <li>Network Architecture (2023)</li>
-                        </ul>
-                        <a href="#" class="resource-link">View Past Papers <i class="fas fa-arrow-right"></i></a>
-                    </div>
+                <div class="quick-link-card">
+                    <i class="fas fa-calendar-alt"></i>
+                    <h3>Academic Calendar</h3>
+                    <p>Stay updated with important academic dates and deadlines.</p>
+                    <a href="#" class="resource-link">View Calendar →</a>
                 </div>
             </div>
         </div>
