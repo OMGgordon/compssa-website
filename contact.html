@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - COMPSSA</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Contact Page Specific Styles */
+        .contact-hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('Assets/contact/hero.jpg');
+            background-size: cover;
+            background-position: center;
+            height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: var(--white);
+            margin-top: 60px;
+        }
+
+        .contact-hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .contact-hero p {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Contact Grid Layout */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            padding: 4rem 2rem;
+        }
+
+        /* Contact Information */
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .info-card {
+            background: var(--white);
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .info-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .info-title {
+            color: var(--primary-color);
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .info-title i {
+            font-size: 1.8rem;
+        }
+
+        /* Location Map */
+        .location-map {
+            width: 100%;
+            height: 300px;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-top: 1rem;
+        }
+
+        .location-map iframe {
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        /* Executive List */
+        .executive-list {
+            list-style: none;
+        }
+
+        .executive-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem 0;
+            border-bottom: 1px solid var(--light-gray);
+        }
+
+        .executive-item:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+
+        .executive-image {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            overflow: hidden;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .executive-info h4 {
+            color: var(--secondary-color);
+            margin-bottom: 0.3rem;
+        }
+
+        .executive-info p {
+            color: var(--dark-gray);
+            font-size: 0.9rem;
+        }
+
+        /* Social Media Links */
+        .social-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+        }
+
+        .social-link {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            background: var(--light-bg);
+            border-radius: 5px;
+            transition: var(--transition);
+            text-decoration: none;
+            color: var(--dark-gray);
+        }
+
+        .social-link:hover {
+            background: var(--primary-color);
+            color: var(--white);
+            transform: translateX(5px);
+        }
+
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+        }
+
+        /* Contact Form */
+        .contact-form {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--secondary-color);
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid var(--light-gray);
+            border-radius: 5px;
+            font-family: inherit;
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            border-color: var(--primary-color);
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.1);
+        }
+
+        .form-group textarea {
+            height: 150px;
+            resize: vertical;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 992px) {
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .contact-hero h1 {
+                font-size: 2rem;
+            }
+
+            .contact-hero p {
+                font-size: 1rem;
+            }
+
+            .social-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="logo">
+            <img src="Assets/logo.png" alt="COMPSSA Logo">
+            <span>COMPSSA</span>
+        </div>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="academics.html">Academics</a>
+            <a href="events.html">Events</a>
+            <a href="resources.html">Resources</a>
+            <a href="blog.html">Blog</a>
+            <a href="get-involved.html">Get Involved</a>
+            <a href="contact.html" class="active">Contact</a>
+            <a href="portal.html" class="portal-btn">Member Portal</a>
+        </div>
+        <div class="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="contact-hero">
+        <div class="container">
+            <h1>Contact Us</h1>
+            <p>Get in touch with us for any inquiries, suggestions, or collaboration opportunities.</p>
+        </div>
+    </section>
+
+    <!-- Contact Content -->
+    <div class="container">
+        <div class="contact-grid">
+            <!-- Contact Information -->
+            <div class="contact-info">
+                <!-- Office Location -->
+                <div class="info-card">
+                    <h2 class="info-title">
+                        <i class="fas fa-map-marker-alt"></i>
+                        Office Location
+                    </h2>
+                    <p>Computer Science Department<br>University of Ghana<br>Legon, Accra</p>
+                    <div class="location-map">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d2343.0479397902086!2d-0.1853360378922145!3d5.653361583502869!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xfdf9d35c7bc40fd%3A0x760b35f47b34835d!2sComputer%20Science%20Department%2C%20University%20of%20Ghana!5e0!3m2!1sen!2sus!4v1743489183176!5m2!1sen!2sus" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
+                </div>
+
+                <!-- Executive Contacts -->
+                <div class="info-card">
+                    <h2 class="info-title">
+                        <i class="fas fa-users"></i>
+                        Executive Contacts
+                    </h2>
+                    <ul class="executive-list">
+                        <li class="executive-item">
+                            <div class="executive-image" style="background-image: url('Assets/contact/executive-1.jpg');"></div>
+                            <div class="executive-info">
+                                <h4>John Doe</h4>
+                                <p>President</p>
+                                <p>+233 24 123 4567</p>
+                            </div>
+                        </li>
+                        <li class="executive-item">
+                            <div class="executive-image" style="background-image: url('Assets/contact/executive-2.jpg');"></div>
+                            <div class="executive-info">
+                                <h4>Jane Smith</h4>
+                                <p>Vice President</p>
+                                <p>+233 24 765 4321</p>
+                            </div>
+                        </li>
+                        <li class="executive-item">
+                            <div class="executive-image" style="background-image: url('Assets/contact/executive-3.jpg');"></div>
+                            <div class="executive-info">
+                                <h4>Mike Johnson</h4>
+                                <p>Secretary</p>
+                                <p>+233 24 987 6543</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Social Media -->
+                <div class="info-card">
+                    <h2 class="info-title">
+                        <i class="fas fa-share-alt"></i>
+                        Connect With Us
+                    </h2>
+                    <div class="social-grid">
+                        <a href="#" class="social-link">
+                            <div class="social-icon" style="background: #25D366;">
+                                <i class="fab fa-whatsapp"></i>
+                            </div>
+                            <span>WhatsApp Group</span>
+                        </a>
+                        <a href="#" class="social-link">
+                            <div class="social-icon" style="background: #1DA1F2;">
+                                <i class="fab fa-twitter"></i>
+                            </div>
+                            <span>@COMPSSA_UG</span>
+                        </a>
+                        <a href="#" class="social-link">
+                            <div class="social-icon" style="background: #E4405F;">
+                                <i class="fab fa-instagram"></i>
+                            </div>
+                            <span>@compssa_ug</span>
+                        </a>
+                        <a href="#" class="social-link">
+                            <div class="social-icon" style="background: #0077B5;">
+                                <i class="fab fa-linkedin"></i>
+                            </div>
+                            <span>COMPSSA UG</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contact Form -->
+            <div class="contact-form">
+                <h2 class="info-title">
+                    <i class="fas fa-envelope"></i>
+                    Send Us a Message
+                </h2>
+                <form action="#" method="POST">
+                    <div class="form-group">
+                        <label for="name">Full Name</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="subject">Subject</label>
+                        <select id="subject" name="subject" required>
+                            <option value="">Select a subject</option>
+                            <option value="general">General Inquiry</option>
+                            <option value="membership">Membership</option>
+                            <option value="events">Events</option>
+                            <option value="sponsorship">Sponsorship</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" required></textarea>
+                    </div>
+                    <button type="submit" class="btn">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>COMPSSA</h3>
+                    <p>University of Ghana Computer Science Student Association</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="events.html">Events</a></li>
+                        <li><a href="resources.html">Resources</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Connect With Us</h3>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 COMPSSA. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html> 

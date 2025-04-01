@@ -200,17 +200,45 @@ body {
 
 .cta-btn {
     display: inline-block;
-    padding: 1rem 2rem;
+    padding: 0.8rem 1.5rem;
     background: var(--primary-color);
     color: var(--white);
     text-decoration: none;
     border-radius: 5px;
-    transition: var(--transition);
+    font-weight: 500;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    border: 2px solid var(--primary-color);
 }
 
 .cta-btn:hover {
-    background: var(--accent-color);
-    transform: translateY(-3px);
+    background: transparent;
+    color: var(--primary-color);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.cta-btn:active {
+    transform: translateY(0);
+}
+
+.cta-btn::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: width 0.6s ease, height 0.6s ease;
+}
+
+.cta-btn:hover::after {
+    width: 300px;
+    height: 300px;
 }
 
 .slider-controls {
@@ -569,4 +597,49 @@ body {
     .newsletter-form button {
         width: 100%;
     }
+}
+
+/* Global Button Styles */
+.btn, .cta-btn, .event-btn, .action-btn {
+    display: inline-block;
+    padding: 0.8rem 1.5rem;
+    background: var(--primary-color);
+    color: var(--white);
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    border: 2px solid var(--primary-color);
+}
+
+.btn:hover, .cta-btn:hover, .event-btn:hover, .action-btn:hover {
+    background: transparent;
+    color: var(--primary-color);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.btn:active, .cta-btn:active, .event-btn:active, .action-btn:active {
+    transform: translateY(0);
+}
+
+/* Add a subtle animation for all buttons */
+.btn::after, .cta-btn::after, .event-btn::after, .action-btn::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: width 0.6s ease, height 0.6s ease;
+}
+
+.btn:hover::after, .cta-btn:hover::after, .event-btn:hover::after, .action-btn:hover::after {
+    width: 300px;
+    height: 300px;
 } 

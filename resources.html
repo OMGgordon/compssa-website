@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resources - COMPSSA</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Resources Page Specific Styles */
+        .resources-hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('Assets/resources/resources-hero.jpg');
+            background-size: cover;
+            background-position: center;
+            height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: var(--white);
+            margin-top: 60px;
+        }
+
+        .resources-hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .resources-hero p {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Resource Section Styles */
+        .resource-section {
+            padding: 5rem 0;
+        }
+
+        .resource-section:nth-child(even) {
+            background: var(--light-gray);
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-header h2 {
+            color: var(--primary-color);
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .section-header p {
+            color: var(--dark-gray);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Resource Grid */
+        .resource-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            padding: 0 2rem;
+        }
+
+        .resource-card {
+            background: var(--white);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .resource-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .resource-icon {
+            background: var(--primary-color);
+            color: var(--white);
+            padding: 1.5rem;
+            text-align: center;
+            font-size: 2rem;
+        }
+
+        .resource-content {
+            padding: 1.5rem;
+        }
+
+        .resource-content h3 {
+            color: var(--secondary-color);
+            margin-bottom: 1rem;
+        }
+
+        .resource-content p {
+            color: var(--dark-gray);
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+
+        .resource-list {
+            list-style: none;
+            margin-bottom: 1.5rem;
+        }
+
+        .resource-list li {
+            margin-bottom: 0.5rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .resource-list li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: var(--primary-color);
+        }
+
+        .resource-link {
+            display: inline-block;
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .resource-link:hover {
+            color: var(--accent-color);
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .resources-hero h1 {
+                font-size: 2rem;
+            }
+
+            .resources-hero p {
+                font-size: 1rem;
+            }
+
+            .resource-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="logo">
+            <img src="Assets/logo.png" alt="COMPSSA Logo">
+            <span>COMPSSA</span>
+        </div>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="academics.html">Academics</a>
+            <a href="events.html">Events</a>
+            <a href="resources.html" class="active">Resources</a>
+            <a href="blog.html">Blog</a>
+            <a href="get-involved.html">Get Involved</a>
+            <a href="contact.html">Contact</a>
+            <a href="portal.html" class="portal-btn">Member Portal</a>
+        </div>
+        <div class="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </nav>
+
+    <!-- Resources Hero -->
+    <section class="resources-hero">
+        <div class="container">
+            <h1>Student Resources</h1>
+            <p>Access learning materials, opportunities, and support to enhance your academic journey.</p>
+        </div>
+    </section>
+
+    <!-- Coding Tutorials Section -->
+    <section class="resource-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Coding Tutorials & Learning Materials</h2>
+                <p>Enhance your programming skills with curated tutorials and learning resources.</p>
+            </div>
+            <div class="resource-grid">
+                <div class="resource-card">
+                    <div class="resource-icon">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <div class="resource-content">
+                        <h3>Programming Fundamentals</h3>
+                        <p>Learn the basics of programming with our comprehensive tutorials.</p>
+                        <ul class="resource-list">
+                            <li>Python Programming</li>
+                            <li>Java Development</li>
+                            <li>Web Development</li>
+                            <li>Data Structures</li>
+                        </ul>
+                        <a href="#" class="resource-link">Access Tutorials →</a>
+                    </div>
+                </div>
+                <div class="resource-card">
+                    <div class="resource-icon">
+                        <i class="fas fa-laptop-code"></i>
+                    </div>
+                    <div class="resource-content">
+                        <h3>Advanced Topics</h3>
+                        <p>Explore advanced programming concepts and technologies.</p>
+                        <ul class="resource-list">
+                            <li>Machine Learning</li>
+                            <li>Cloud Computing</li>
+                            <li>Mobile Development</li>
+                            <li>DevOps Practices</li>
+                        </ul>
+                        <a href="#" class="resource-link">View Resources →</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Research Opportunities Section -->
+    <section class="resource-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Research Opportunities</h2>
+                <p>Discover research projects and opportunities in computer science.</p>
+            </div>
+            <div class="resource-grid">
+                <div class="resource-card">
+                    <div class="resource-icon">
+                        <i class="fas fa-microscope"></i>
+                    </div>
+                    <div class="resource-content">
+                        <h3>Current Research Projects</h3>
+                        <p>Explore ongoing research projects in the department.</p>
+                        <ul class="resource-list">
+                            <li>AI & Machine Learning</li>
+                            <li>Cybersecurity</li>
+                            <li>Data Science</li>
+                            <li>IoT & Smart Systems</li>
+                        </ul>
+                        <a href="#" class="resource-link">View Projects →</a>
+                    </div>
+                </div>
+                <div class="resource-card">
+                    <div class="resource-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <div class="resource-content">
+                        <h3>Research Mentorship</h3>
+                        <p>Connect with faculty members for research guidance.</p>
+                        <ul class="resource-list">
+                            <li>Faculty Profiles</li>
+                            <li>Research Areas</li>
+                            <li>Application Process</li>
+                            <li>Research Guidelines</li>
+                        </ul>
+                        <a href="#" class="resource-link">Learn More →</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Scholarships Section -->
+    <section class="resource-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Scholarship Announcements</h2>
+                <p>Stay updated with available scholarships and funding opportunities.</p>
+            </div>
+            <div class="resource-grid">
+                <div class="resource-card">
+                    <div class="resource-icon">
+                        <i class="fas fa-award"></i>
+                    </div>
+                    <div class="resource-content">
+                        <h3>Academic Scholarships</h3>
+                        <p>Scholarships based on academic performance.</p>
+                        <ul class="resource-list">
+                            <li>Merit-based Awards</li>
+                            <li>Dean's List Scholarships</li>
+                            <li>Department Awards</li>
+                            <li>Research Grants</li>
+                        </ul>
+                        <a href="#" class="resource-link">View Scholarships →</a>
+                    </div>
+                </div>
+                <div class="resource-card">
+                    <div class="resource-icon">
+                        <i class="fas fa-hand-holding-usd"></i>
+                    </div>
+                    <div class="resource-content">
+                        <h3>External Funding</h3>
+                        <p>External scholarships and funding opportunities.</p>
+                        <ul class="resource-list">
+                            <li>Industry Scholarships</li>
+                            <li>International Programs</li>
+                            <li>Competition Prizes</li>
+                            <li>Need-based Aid</li>
+                        </ul>
+                        <a href="#" class="resource-link">Explore Options →</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Job Postings Section -->
+    <section class="resource-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Internship & Job Postings</h2>
+                <p>Find approved internship and job opportunities in the tech industry.</p>
+            </div>
+            <div class="resource-grid">
+                <div class="resource-card">
+                    <div class="resource-icon">
+                        <i class="fas fa-briefcase"></i>
+                    </div>
+                    <div class="resource-content">
+                        <h3>Internship Opportunities</h3>
+                        <p>Explore internship programs from leading tech companies.</p>
+                        <ul class="resource-list">
+                            <li>Summer Internships</li>
+                            <li>Part-time Positions</li>
+                            <li>Research Internships</li>
+                            <li>Industry Projects</li>
+                        </ul>
+                        <a href="#" class="resource-link">View Internships →</a>
+                    </div>
+                </div>
+                <div class="resource-card">
+                    <div class="resource-icon">
+                        <i class="fas fa-building"></i>
+                    </div>
+                    <div class="resource-content">
+                        <h3>Job Opportunities</h3>
+                        <p>Full-time positions from approved employers.</p>
+                        <ul class="resource-list">
+                            <li>Entry-level Positions</li>
+                            <li>Graduate Programs</li>
+                            <li>Research Positions</li>
+                            <li>Industry Roles</li>
+                        </ul>
+                        <a href="#" class="resource-link">Browse Jobs →</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>COMPSSA</h3>
+                    <p>University of Ghana Computer Science Student Association</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="events.html">Events</a></li>
+                        <li><a href="resources.html">Resources</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Connect With Us</h3>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 COMPSSA. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html> 
