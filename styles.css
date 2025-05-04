@@ -119,13 +119,15 @@ body {
 .hamburger {
     display: none;
     flex-direction: column;
-    gap: 5px;
+    gap: 6px;
     cursor: pointer;
+    padding: 4px;
 }
 
 .hamburger span {
+    display: block;
     width: 25px;
-    height: 3px;
+    height: 2px;
     background: var(--secondary-color);
     transition: var(--transition);
 }
@@ -521,28 +523,36 @@ body {
 
 /* Responsive Design */
 @media (max-width: 992px) {
+    .hamburger {
+        display: flex;
+    }
+
     .nav-links {
         display: none;
         position: fixed;
         top: 60px;
         left: 0;
         width: 100%;
-        background: var(--white);
+        background: rgba(0, 0, 0, 0.9);
         padding: 2rem;
         flex-direction: column;
-        box-shadow: var(--shadow);
+        align-items: center;
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
     }
 
     .nav-links.active {
         display: flex;
     }
 
-    .hamburger {
-        display: flex;
+    .nav-links a {
+        color: var(--white);
+        font-size: 1.1rem;
+        padding: 0.5rem 0;
     }
 
     .hamburger.active span:nth-child(1) {
-        transform: rotate(45deg) translate(5px, 5px);
+        transform: rotate(45deg) translate(6px, 6px);
     }
 
     .hamburger.active span:nth-child(2) {
@@ -550,7 +560,7 @@ body {
     }
 
     .hamburger.active span:nth-child(3) {
-        transform: rotate(-45deg) translate(7px, -6px);
+        transform: rotate(-45deg) translate(6px, -6px);
     }
 
     .message-content {
